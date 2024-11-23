@@ -15,6 +15,10 @@ jobs:
         run: |
           echo "Free space:"
           df -h
+      - name: 设置Git用户信息
+        run: |
+          git config --global user.email "1036066414@qq.com"
+          git config --global user.name "mutemoon"
       - name: 下载hf模型
         run: |
           git lfs install
