@@ -15,19 +15,36 @@ jobs:
         run: |
           echo "Free space:"
           df -h
-      - name: 设置Git用户信息
-        run: |
-          git config --global user.email "1036066414@qq.com"
-          git config --global user.name "mutemoon"
       - name: 下载hf模型
         run: |
+          git config --global user.email $GIT_EMAIL
+          git config --global user.name $GIT_USER
           git lfs install
-          git clone https://oauth2:${{ secrets.MODEL_SCOPE_GIT_TOKEN }}@www.modelscope.cn/Poikid/Qwen2.5-32B-AGI-Q4_K_M-GGUF.git
+          git clone https://oauth2:$HF_TOKEN@www.modelscope.cn/$MS_USER/$HF_MODEL_NAME.git
+          echo "modelscope克隆成功"
+
           cd Qwen2.5-32B-AGI-Q4_K_M-GGUF
-          ls -l
           pip install "huggingface_hub[hf_transfer]"
-          # huggingface-cli download Karsh-CAI/Qwen2.5-32B-AGI-Q4_K_M-GGUF --local-dir ./models
-          huggingface-cli download Qwen/Qwen2.5-0.5B --local-dir ./models
+          echo "安装huggingface-cli成功"
+
+          huggingface-cli download $HF_MODEL_NAME --local-dir ./
+          echo "下载huggingface模型成功"
+
+          echo "modelscope目录"
+          ls -l
+
           git add .
           git commit -m "上传模型"
-          git push -u origin main
+          echo "modelscope提交成功"
+
+          git push
+          echo "modelscope推送成功"
+
+        env:
+          GIT_USER: mutemoon
+          GIT_EMAIL: 1036066414@qq.com
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          # HF_MODEL_NAME: Karsh-CAI/Qwen2.5-32B-AGI-Q4_K_M-GGUF
+          MODEL_NAME: Qwen/Qwen2.5-0.5B
+          HF_USER: Qwen
+          MS_USER: Poikid
