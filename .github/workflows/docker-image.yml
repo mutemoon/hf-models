@@ -20,7 +20,7 @@ jobs:
           git config --global user.email $GIT_EMAIL
           git config --global user.name $GIT_USER
           git lfs install
-          git clone https://oauth2:$HF_TOKEN@www.modelscope.cn/$MS_USER/$HF_MODEL_NAME.git
+          git clone https://oauth2:$MODEL_SCOPE_GIT_TOKEN@www.modelscope.cn/$MS_USER/$HF_MODEL_NAME.git
           echo "modelscope克隆成功"
 
           cd Qwen2.5-32B-AGI-Q4_K_M-GGUF
@@ -43,7 +43,7 @@ jobs:
         env:
           GIT_USER: mutemoon
           GIT_EMAIL: 1036066414@qq.com
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          MODEL_SCOPE_GIT_TOKEN: ${{ secrets.MODEL_SCOPE_GIT_TOKEN }}
           # HF_MODEL_NAME: Karsh-CAI/Qwen2.5-32B-AGI-Q4_K_M-GGUF
           MODEL_NAME: Qwen/Qwen2.5-0.5B
           HF_USER: Qwen
