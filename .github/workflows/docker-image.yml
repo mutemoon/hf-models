@@ -22,4 +22,8 @@ jobs:
           cd Qwen2.5-32B-AGI-Q4_K_M-GGUF
           ls -l
           pip install "huggingface_hub[hf_transfer]"
-          huggingface-cli download Karsh-CAI/Qwen2.5-32B-AGI-Q4_K_M-GGUF --local-dir ./models
+          # huggingface-cli download Karsh-CAI/Qwen2.5-32B-AGI-Q4_K_M-GGUF --local-dir ./models
+          huggingface-cli download Qwen/Qwen2.5-0.5B --local-dir ./models
+          git add .
+          git commit -m "上传模型"
+          git push -u origin main
