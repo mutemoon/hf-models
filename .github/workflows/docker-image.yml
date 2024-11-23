@@ -20,15 +20,15 @@ jobs:
           git config --global user.email $GIT_EMAIL
           git config --global user.name $GIT_USER
           git lfs install
-          echo "https://oauth2:${{ secrets.MODEL_SCOPE_GIT_TOKEN }}@www.modelscope.cn/$MS_USER/$HF_MODEL_NAME.git"
-          git clone https://oauth2:${{ secrets.MODEL_SCOPE_GIT_TOKEN }}@www.modelscope.cn/$MS_USER/$HF_MODEL_NAME.git
+          echo "https://oauth2:${{ secrets.MODEL_SCOPE_GIT_TOKEN }}@www.modelscope.cn/$MS_USER/$MODEL_NAME.git"
+          git clone https://oauth2:${{ secrets.MODEL_SCOPE_GIT_TOKEN }}@www.modelscope.cn/$MS_USER/$MODEL_NAME.git
           echo "modelscope克隆成功"
 
           cd Qwen2.5-32B-AGI-Q4_K_M-GGUF
           pip install "huggingface_hub[hf_transfer]"
           echo "安装huggingface-cli成功"
 
-          huggingface-cli download $HF_MODEL_NAME --local-dir ./
+          huggingface-cli download $MODEL_NAME --local-dir ./
           echo "下载huggingface模型成功"
 
           echo "modelscope目录"
