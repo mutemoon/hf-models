@@ -1,10 +1,11 @@
-# Download a single file
-# from huggingface_hub import hf_hub_download
-# hf_hub_download(repo_id="tiiuae/falcon-7b-instruct", filename="config.json")
+import os
 
-# Or an entire repository
+# 从环境变量获取模型名称，如果没有设置则使用默认值
+model_name = os.getenv('MODEL_NAME', 'THUDM/chatglm3-6b-32k')
+
+# 下载模型
 from huggingface_hub import snapshot_download
-snapshot_download("THUDM/chatglm3-6b-32k")
+snapshot_download(model_name)
 
 # Download from a dataset
 # from huggingface_hub import snapshot_download
