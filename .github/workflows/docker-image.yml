@@ -17,8 +17,8 @@ jobs:
           df -h
       - name: 下载hf模型
         run: |
-          git init lfs
-          git clone https://oauth2:${{ secrets.MODEL_SCOPE_GIT_TOKEN }}@www.modelscope.cn/Poikid/ Qwen2.5-32B-AGI-Q4_K_M-GGUF.git
+          git lfs install
+          git clone https://oauth2:${{ secrets.MODEL_SCOPE_GIT_TOKEN }}@www.modelscope.cn/Poikid/Qwen2.5-32B-AGI-Q4_K_M-GGUF.git
           cd Qwen2.5-32B-AGI-Q4_K_M-GGUF
           ls -l
           pip install "huggingface_hub[hf_transfer]"
